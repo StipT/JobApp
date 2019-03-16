@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/new_ad_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:background="@drawable/layout_bg"
+        android:text="@string/new_ad_title"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/new_ad_description_position"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="@string/new_ad_description_position" />
+
+    <EditText
+        android:id="@+id/new_ad_edit_position"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:ems="10"
+        android:hint="@string/new_ad_edit_position_hint"
+        android:inputType="textShortMessage"
+        android:singleLine="true" />
+
+    <TextView
+        android:id="@+id/new_ad_description_highlight"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="@string/new_ad_description_highlighted_text" />
+
+    <EditText
+        android:id="@+id/new_ad_edit_highlight"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:ems="10"
+        android:hint="@string/new_ad_edit_highlight_hint"
+        android:inputType="textShortMessage"
+        android:singleLine="true" />
+
+    <TextView
+        android:id="@+id/new_ad_description_qualification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="@string/new_ad_description_qualification" />
+
+    <EditText
+        android:id="@+id/new_ad_edit_qualification"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_margin="8dp"
+        android:ems="10"
+        android:inputType="textMultiLine"
+        android:singleLine="false" />
+
+    <TextView
+        android:id="@+id/new_ad_description_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="@string/new_ad_description_description" />
+
+    <EditText
+        android:id="@+id/new_ad_edit_description"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_margin="8dp"
+        android:ems="10"
+        android:inputType="textMultiLine"
+        android:singleLine="false" />
+
+    <Button
+        android:id="@+id/new_ad_edit_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/new_ad_edit_button"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+</LinearLayout>
