@@ -4,15 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.Toast;
-
 import com.example.jobapp.Adapters.FirestoreAdapter;
-import com.example.jobapp.Models.Profile;
 import com.example.jobapp.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -20,10 +16,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 
-import javax.security.auth.login.LoginException;
 
 public class SignUpActivity extends AppCompatActivity implements View.OnClickListener {
-    private static final String TAG = "SignUpActivity";
     EditText editTextEmail, editTextPassword;
     private FirestoreAdapter firestoreAdapter = new FirestoreAdapter();
     private FirebaseAuth firebaseAuth;

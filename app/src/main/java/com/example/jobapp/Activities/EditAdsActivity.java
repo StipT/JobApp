@@ -9,7 +9,6 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-
 import com.example.jobapp.Adapters.FirestoreAdapter;
 import com.example.jobapp.Adapters.RecyclerAdapter;
 import com.example.jobapp.Models.Ad;

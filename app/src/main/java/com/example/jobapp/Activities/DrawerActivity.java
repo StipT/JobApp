@@ -16,10 +16,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.jobapp.Adapters.FirestoreAdapter;
 import com.example.jobapp.Adapters.RecyclerAdapter;
 import com.example.jobapp.Models.Ad;
@@ -42,7 +40,6 @@ public class DrawerActivity extends AppCompatActivity implements NavigationView.
     private View headerView;
     private TextView drawerUsername;
     private TextView drawerEmail;
-    private SearchView searchView;
 
 //TODO ScreenSize & landscape optimization
 

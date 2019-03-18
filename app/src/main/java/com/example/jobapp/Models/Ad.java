@@ -1,7 +1,7 @@
 package com.example.jobapp.Models;
 
 import java.io.Serializable;
-import java.util.Date;
+
 
 public class Ad implements Serializable {
     public static final long serialVesrionUID = 1L;

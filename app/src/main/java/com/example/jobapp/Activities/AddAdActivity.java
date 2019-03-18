@@ -2,13 +2,11 @@ package com.example.jobapp.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.example.jobapp.Models.Ad;
 import com.example.jobapp.Adapters.FirestoreAdapter;
 
@@ -16,7 +14,6 @@ import com.example.jobapp.R;
 
 public class AddAdActivity extends AppCompatActivity{
     final FirestoreAdapter firestoreAdapter = new FirestoreAdapter();
-    private static final String TAG = "AddAdActivity";
     private EditText editPosition;
     private EditText editHighlight;
     private EditText editQualification;
