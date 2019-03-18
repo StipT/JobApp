@@ -73,5 +73,6 @@
         android:id="@+id/profile_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryLight"
         android:text="@string/profile_button" />
 </LinearLayout>

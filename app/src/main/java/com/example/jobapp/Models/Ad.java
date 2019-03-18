@@ -4,8 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class Ad implements Serializable {
-    public static final long serialVesrionUID = 1;
-
+    public static final long serialVesrionUID = 1L;
     private String username;
     private String contactEmail;
     private String position;
@@ -13,7 +12,6 @@ public class Ad implements Serializable {
     private String description;
     private String qualification;
     private String about;
-
 
     //TODO  Timestamp/Date implementation
 

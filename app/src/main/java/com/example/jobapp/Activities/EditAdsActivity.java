@@ -9,7 +9,7 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import com.example.jobapp.Adapters.FirebaseAuthAdapter;
+
 import com.example.jobapp.Adapters.FirestoreAdapter;
 import com.example.jobapp.Adapters.RecyclerAdapter;
 import com.example.jobapp.Models.Ad;
@@ -26,7 +26,6 @@ public class EditAdsActivity extends AppCompatActivity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private RecyclerAdapter recyclerAdapter;
     private FirestoreAdapter firestoreAdapter = new FirestoreAdapter();
-    private FirebaseAuthAdapter firebaseAuthAdapter = new FirebaseAuthAdapter();
     private Profile currentProfile;
     FirestoreRecyclerOptions<Ad> options;
 
@@ -35,15 +34,15 @@ public class EditAdsActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_ads);
-        setUpRecyclerViewe();
+        setUpRecyclerView();
         currentProfile = firestoreAdapter.getCurrentProfile();
     }
 
-    private void setUpRecyclerViewe() {
+    private void setUpRecyclerView() {
 
         options = new FirestoreRecyclerOptions.Builder<Ad>()
                 .setQuery(db.collection(Contract.Ads.COLLECTION_NAME)
-                        .whereEqualTo(Contract.Ads.UID, firebaseAuthAdapter.userUID()), Ad.class)
+                        .whereEqualTo(Contract.Ads.UID, firestoreAdapter.userUID()), Ad.class)
                 .build();
 
         recyclerAdapter = new RecyclerAdapter(options);

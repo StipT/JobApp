@@ -32,7 +32,7 @@
     <string name="new_ad_description_description">Job description :</string>
     <string name="new_ad_description_highlighted_text">Highlighted description/qualification</string>
     <string name="new_ad_description_qualification">Requested qualifications :</string>
-    <string name="new_ad_title">Add New Ad</string>
+    <string name="new_ad_title">Edit Your Ad</string>
     <string name="new_ad_edit_highlight_hint">e.g. \"Junior Developer\"  or  \"Remote\"</string>
     <string name="new_ad_edit_position_hint">e.g. iOS Developer</string>
     <string name="new_ad_edit_button">ADD</string>
@@ -53,9 +53,13 @@
     <string name="details_description">Job description:</string>
     <string name="details_qualification">Qualifications:</string>
     <string name="login_email">email</string>
-    <string name="login_password">Password</string>
+    <string name="login_password">password</string>
     <string name="search_bar">Search</string>
     <string name="action_search">Search...</string>
     <string name="edit_ads_text">Edit Your Ads</string>
+    <string name="login_textview">Sign in</string>
+    <string name="delete_button_text">Delete ad</string>
+    <string name="new_ad_delete_button_text">Delete</string>
+    <string name="edit_ad_button_text">Update</string>
 
 </resources>

@@ -9,6 +9,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -20,17 +21,20 @@ import java.util.List;
 import java.util.Map;
 
 
-
 public class FirestoreAdapter {
     private static final String TAG = "FirestoreAdapter";
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private FirebaseAuthAdapter firebaseAuthAdapter = new FirebaseAuthAdapter();
+    private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     private Profile currentProfile;
 
 
 
     public interface FirestoreListener {
         void onFoundProfile(Profile profile);
+    }
+
+    public String userUID() {
+        return firebaseAuth.getUid();
     }
 
 
@@ -56,7 +60,7 @@ public class FirestoreAdapter {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Profile profile = document.toObject(Profile.class);
 
-                                if (profile.getUid().equals(firebaseAuthAdapter.userUID())) {
+                                if (profile.getUid().equals(userUID())) {
                                     matchedProfile = profile;
                                 }
                             }
@@ -97,9 +101,14 @@ public class FirestoreAdapter {
                     });
         }
     }
+
+    public void deleteAd(String id) {
+        db.collection(Contract.Ads.COLLECTION_NAME).document(id).delete();
+    }
+
     public void createProfile() {
         final Map<String, String> mappedEmployer = new HashMap<>();
-        mappedEmployer.put(Contract.Profiles.UID, firebaseAuthAdapter.userUID());
+        mappedEmployer.put(Contract.Profiles.UID, userUID());
         mappedEmployer.put(Contract.Profiles.USERNAME, "Guest");
         mappedEmployer.put(Contract.Profiles.CONTACT_EMAIL, "");
         mappedEmployer.put(Contract.Profiles.ABOUT, "I am just a guest until i personalise this profile");
@@ -114,7 +123,7 @@ public class FirestoreAdapter {
         mappedEmployer.put(Contract.Profiles.ABOUT, profile.getAbout());
 
             db.collection(Contract.Ads.COLLECTION_NAME)
-                    .whereEqualTo(Contract.Ads.UID, firebaseAuthAdapter.userUID())
+                    .whereEqualTo(Contract.Ads.UID, userUID())
                     .get()
                     .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                         @Override
@@ -133,7 +142,7 @@ public class FirestoreAdapter {
                         }
                     });
             db.collection(Contract.Profiles.COLLECTION_NAME)
-                    .whereEqualTo(Contract.Profiles.UID, firebaseAuthAdapter.userUID())
+                    .whereEqualTo(Contract.Profiles.UID, userUID())
                     .get()
                     .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                         @Override

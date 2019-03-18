@@ -18,6 +18,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.example.jobapp.Adapters.FirestoreAdapter;
 import com.example.jobapp.Adapters.RecyclerAdapter;
 import com.example.jobapp.Models.Ad;
@@ -55,7 +57,7 @@ public class DrawerActivity extends AppCompatActivity implements NavigationView.
         drawerUsername = headerView.findViewById(R.id.drawer_header_name);
         drawerEmail = headerView.findViewById(R.id.drawer_header_email);
 
-        setUpRecyclerView("");
+        setUpRecyclerView();
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -67,22 +69,14 @@ public class DrawerActivity extends AppCompatActivity implements NavigationView.
         toggle.syncState();
 
         navigationView.setNavigationItemSelectedListener(this);
-
-
     }
 
-    private void setUpRecyclerView(String search) {
+    private void setUpRecyclerView() {
         FirestoreRecyclerOptions<Ad> options;
-
-        if (search.isEmpty()) {
             options = new FirestoreRecyclerOptions.Builder<Ad>()
                     .setQuery(db.collection(Contract.Ads.COLLECTION_NAME), Ad.class)
                     .build();
-        } else {
-            options = new FirestoreRecyclerOptions.Builder<Ad>()
-                    .setQuery(db.collection(Contract.Ads.COLLECTION_NAME).whereEqualTo(Contract.Ads.POSITION, search), Ad.class)
-                    .build();
-        }
+
         recyclerAdapter = new RecyclerAdapter(options);
 
         RecyclerView recyclerView = findViewById(R.id.recycler_list);
@@ -93,23 +87,16 @@ public class DrawerActivity extends AppCompatActivity implements NavigationView.
         recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
         recyclerView.setAdapter(recyclerAdapter);
 
-
         recyclerAdapter.setOnClickListener(new RecyclerAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
                 Ad ad = documentSnapshot.toObject(Ad.class);
                 Intent intent = new Intent(DrawerActivity.this, AdDetailsActivity.class);
                 intent.putExtra("Ad", ad);
-
                 startActivity(intent);
             }
         });
             }
-
-
-
-
-
 
     @Override
     protected void onStart() {
@@ -126,13 +113,14 @@ public class DrawerActivity extends AppCompatActivity implements NavigationView.
     @Override
     protected void onResume() {
         super.onResume();
+
         firestoreAdapter.firestoreProfile(new FirestoreAdapter.FirestoreListener() {
             @Override
             public void onFoundProfile(Profile profile) {
                 if (profile != null) {
                     currentUserProfile = profile;
-                    drawerUsername.setText(profile.getUsername());
-                    drawerEmail.setText(profile.getContactEmail());
+                    drawerUsername.setText(currentUserProfile.getUsername());
+                    drawerEmail.setText(currentUserProfile.getContactEmail());
                 }
             }
         });
@@ -166,8 +154,7 @@ public class DrawerActivity extends AppCompatActivity implements NavigationView.
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_search) {
-            setUpRecyclerView(searchView.getQuery().toString());
-
+            Toast.makeText(DrawerActivity.this, "Sorry! Search function is not yet realised", Toast.LENGTH_LONG).show();
             //TODO SearchActivity filter
             return true;
         }
@@ -184,6 +171,7 @@ public class DrawerActivity extends AppCompatActivity implements NavigationView.
         if (id == R.id.nav_edit_Profile) {
             Intent intent = new Intent(DrawerActivity.this, ProfileActivity.class);
             intent.putExtra("Profile", currentUserProfile);
+            Log.d(TAG, "onNavigationItemSelected: =======================> " + currentUserProfile.toString());
             startActivity(intent);
 
         } else if (id == R.id.nav_edit_ads) {
@@ -195,10 +183,8 @@ public class DrawerActivity extends AppCompatActivity implements NavigationView.
             startActivity(intent);
         }
 
-
         DrawerLayout drawer =  findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
 }

@@ -12,19 +12,23 @@
         android:id="@+id/recycler_employer_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textAllCaps="false"
         android:textSize="24sp"
-        tools:text="Neka Firma d.o.o."
-        android:visibility="visible"/>
+        android:textStyle="bold"
+        android:visibility="visible"
+        tools:text="Neka Firma d.o.o." />
 
     <TextView
         android:id="@+id/recycler_position"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-condensed-light"
         android:textAlignment="center"
+        android:textColor="@color/colorPrimary"
         android:textSize="30sp"
         android:textStyle="bold"
-        tools:text="Android Developer"
-        android:visibility="visible"/>
+        android:visibility="visible"
+        tools:text="Android Developer" />
 
     <TextView
         android:id="@+id/recycler_higlight"
@@ -33,15 +37,15 @@
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat"
         android:textSize="16sp"
-        tools:text="Mid-level/Senior"
-        android:visibility="visible"/>
+        android:visibility="visible"
+        tools:text="Mid-level/Senior" />
 
     <TextView
         android:id="@+id/recycler_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="textEnd"
-        tools:text="15/12/2019"
-        android:visibility="visible"/>
+        android:visibility="visible"
+        tools:text="15/12/2019" />
 
 </LinearLayout>

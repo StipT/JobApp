@@ -34,6 +34,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
+        android:background="@color/colorPrimaryLight"
         android:text="@string/sign_up_button"
         android:textSize="18sp"
         android:textStyle="bold" />
@@ -47,4 +48,5 @@
         android:textAlignment="center"
         android:textSize="18sp"
         android:textStyle="italic" />
+
 </LinearLayout>

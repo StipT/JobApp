@@ -35,9 +35,6 @@ public class Profile implements Serializable {
         return uid;
     }
 
-
-
-
     @Override
     public String toString() {
         return "Profile{" +

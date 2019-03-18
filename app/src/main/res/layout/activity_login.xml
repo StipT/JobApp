@@ -35,6 +35,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
+        android:background="@color/colorPrimaryLight"
         android:text="@string/login_button_text"
         android:textSize="18sp"
         android:textStyle="bold" />
@@ -48,4 +49,5 @@
         android:textAlignment="center"
         android:textSize="18sp"
         android:textStyle="italic" />
+
 </LinearLayout>

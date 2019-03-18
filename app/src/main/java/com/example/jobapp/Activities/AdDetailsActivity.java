@@ -22,11 +22,10 @@ public class AdDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_ad_details);
 
         Intent intent = getIntent();
-        Ad ad = (Ad)intent.getSerializableExtra("Ad");
-        Log.d(TAG, "onCreate:  ===============> " + ad.toString());
-        Profile profile = (Profile)intent.getSerializableExtra("Profile");
+        Ad ad = (Ad) intent.getSerializableExtra("Ad");
 
-        TextView name =  findViewById(R.id.detail_name);
+
+        TextView name = findViewById(R.id.detail_name);
         TextView email = findViewById(R.id.detail_email);
         TextView position = findViewById(R.id.detail_position);
         TextView higlight = findViewById(R.id.detail_highlight);

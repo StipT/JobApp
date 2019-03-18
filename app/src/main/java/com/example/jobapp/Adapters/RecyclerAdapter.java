@@ -25,7 +25,6 @@ public class RecyclerAdapter extends FirestoreRecyclerAdapter <Ad, RecyclerAdapt
         holder.ad_employer.setText(model.getUsername());
         holder.ad_position.setText(model.getPosition());
         holder.ad_highlight.setText(model.getHighlightedText());
-
     }
 
     @NonNull
@@ -36,15 +35,11 @@ public class RecyclerAdapter extends FirestoreRecyclerAdapter <Ad, RecyclerAdapt
 
     }
 
-
-
     public class AdViewHolder extends RecyclerView.ViewHolder {
         private static final String TAG = "AdViewHolder";
         TextView ad_employer;
         TextView ad_position;
         TextView ad_highlight;
-
-
 
         public AdViewHolder(View view){
             super(view);
