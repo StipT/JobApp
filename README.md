@@ -3,4 +3,4 @@
 
 Android application for job advertising.
 
-![image](https://drive.google.com/open?id=1orOhebSsMIrLRMx789y7won5bYrGJ19I)
+https://drive.google.com/open?id=1ClLAxW0PHr-8D5y9C80lG8pKtn_eW0SH
