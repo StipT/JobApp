@@ -1,37 +1,37 @@
-package com.example.jobapp.Activities;
+package com.example.jobapp.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.example.jobapp.Adapters.FirestoreAdapter;
-import com.example.jobapp.Adapters.RecyclerAdapter;
-import com.example.jobapp.Models.Ad;
-import com.example.jobapp.Models.Contract;
-import com.example.jobapp.Models.Profile;
+
 import com.example.jobapp.R;
+import com.example.jobapp.model.Ad;
+import com.example.jobapp.model.Contract;
+import com.example.jobapp.model.Profile;
+import com.example.jobapp.repository.FirestoreAdapter;
+import com.example.jobapp.ui.recycler_adapter.RecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 
-
-public class DrawerActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    private static final String TAG = "DrawerActivity";
+public class AdListActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+    private static final String TAG = "AdListActivity";
     private RecyclerAdapter recyclerAdapter;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private FirestoreAdapter firestoreAdapter = new FirestoreAdapter();
@@ -40,8 +40,6 @@ public class DrawerActivity extends AppCompatActivity implements NavigationView.
     private View headerView;
     private TextView drawerUsername;
     private TextView drawerEmail;
-
-//TODO ScreenSize & landscape optimization
 
 
     @Override
@@ -70,9 +68,9 @@ public class DrawerActivity extends AppCompatActivity implements NavigationView.
 
     private void setUpRecyclerView() {
         FirestoreRecyclerOptions<Ad> options;
-            options = new FirestoreRecyclerOptions.Builder<Ad>()
-                    .setQuery(db.collection(Contract.Ads.COLLECTION_NAME), Ad.class)
-                    .build();
+        options = new FirestoreRecyclerOptions.Builder<Ad>()
+                .setQuery(db.collection(Contract.Ads.COLLECTION_NAME), Ad.class)
+                .build();
 
         recyclerAdapter = new RecyclerAdapter(options);
 
@@ -88,12 +86,12 @@ public class DrawerActivity extends AppCompatActivity implements NavigationView.
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
                 Ad ad = documentSnapshot.toObject(Ad.class);
-                Intent intent = new Intent(DrawerActivity.this, AdDetailsActivity.class);
+                Intent intent = new Intent(AdListActivity.this, AdDetailsActivity.class);
                 intent.putExtra("Ad", ad);
                 startActivity(intent);
             }
         });
-            }
+    }
 
     @Override
     protected void onStart() {
@@ -125,7 +123,7 @@ public class DrawerActivity extends AppCompatActivity implements NavigationView.
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer =  findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -135,11 +133,9 @@ public class DrawerActivity extends AppCompatActivity implements NavigationView.
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.drawer, menu);
         final MenuItem menuItem = menu.findItem(R.id.action_search);
-
-    return true;
+        return true;
     }
 
     @Override
@@ -151,7 +147,7 @@ public class DrawerActivity extends AppCompatActivity implements NavigationView.
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_search) {
-            Toast.makeText(DrawerActivity.this, "Sorry! Search function is not yet realised", Toast.LENGTH_LONG).show();
+            Toast.makeText(AdListActivity.this, "Sorry! Search function is not yet realised", Toast.LENGTH_LONG).show();
             //TODO SearchActivity filter
             return true;
         }
@@ -159,28 +155,33 @@ public class DrawerActivity extends AppCompatActivity implements NavigationView.
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
+
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
         if (id == R.id.nav_edit_Profile) {
-            Intent intent = new Intent(DrawerActivity.this, ProfileActivity.class);
+            Intent intent = new Intent(AdListActivity.this, ProfileActivity.class);
             intent.putExtra("Profile", currentUserProfile);
             Log.d(TAG, "onNavigationItemSelected: =======================> " + currentUserProfile.toString());
             startActivity(intent);
 
         } else if (id == R.id.nav_edit_ads) {
-            Intent intent = new Intent(DrawerActivity.this, EditAdsActivity.class);
+            Intent intent = new Intent(AdListActivity.this, EditAdsActivity.class);
             startActivity(intent);
 
         } else if (id == R.id.nav_add_ad) {
-            Intent intent = new Intent(DrawerActivity.this, AddAdActivity.class);
+            Intent intent = new Intent(AdListActivity.this, AddAdActivity.class);
             startActivity(intent);
+
+        } else if (id == R.id.nav_log_out) {
+            Intent intentLogout = new Intent(AdListActivity.this, LoginActivity.class);
+            intentLogout.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intentLogout);
         }
 
-        DrawerLayout drawer =  findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

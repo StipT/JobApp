@@ -1,4 +1,4 @@
-package com.example.jobapp.Activities;
+package com.example.jobapp.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,9 +7,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
-import com.example.jobapp.Adapters.FirestoreAdapter;
+
 import com.example.jobapp.R;
+import com.example.jobapp.repository.FirestoreAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -21,6 +23,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     EditText editTextEmail, editTextPassword;
     private FirestoreAdapter firestoreAdapter = new FirestoreAdapter();
     private FirebaseAuth firebaseAuth;
+    ProgressBar progressBar;
 
 
     @Override
@@ -30,49 +33,61 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
         editTextEmail = findViewById(R.id.sign_up_email);
         editTextPassword = findViewById(R.id.sign_up_password);
+        progressBar = findViewById(R.id.progressBarRegister);
         findViewById(R.id.sign_up_button).setOnClickListener(this);
         firebaseAuth = FirebaseAuth.getInstance();
     }
 
 
-    private void registerUser(){
-
+    private void registerUser() {
+        progressBar.setVisibility(View.VISIBLE);
         String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
 
-        if(email.isEmpty()){
+        if (email.isEmpty()) {
             editTextEmail.setError("Email is required");
             editTextEmail.requestFocus();
+            progressBar.setVisibility(View.INVISIBLE);
+            return;
         }
 
-        if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             editTextEmail.setError("Enter a valid email");
             editTextEmail.requestFocus();
+            progressBar.setVisibility(View.INVISIBLE);
+            return;
         }
 
-        if(password.isEmpty()){
+        if (password.isEmpty()) {
             editTextPassword.setError("Password is required");
             editTextPassword.requestFocus();
+            progressBar.setVisibility(View.INVISIBLE);
+            return;
         }
 
-        if(password.length() < 6){
+        if (password.length() < 6) {
             editTextPassword.setError("Minimum lenght of password should be 6");
             editTextPassword.requestFocus();
+            progressBar.setVisibility(View.INVISIBLE);
+            return;
         }
 
         firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
+
                 if (task.isSuccessful()) {
                     Toast.makeText(getApplicationContext(), "You have been successfully registered", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
                     firestoreAdapter.createProfile();
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    progressBar.setVisibility(View.INVISIBLE);
                     startActivity(intent);
                 } else {
                     if (task.getException() instanceof FirebaseAuthUserCollisionException) {
                         Toast.makeText(getApplicationContext(), "This email is already registered", Toast.LENGTH_LONG).show();
                     } else {
+                        progressBar.setVisibility(View.INVISIBLE);
                         Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_LONG).show();
                     }
                 }
@@ -82,14 +97,6 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onClick(View v) {
-        switch(v.getId()){
-            case R.id.sign_up_button:
-                registerUser();
-                break;
-
-            case R.id.sign_up_login:
-                startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
-                break;
-        }
+        registerUser();
     }
 }

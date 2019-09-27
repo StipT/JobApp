@@ -1,12 +1,13 @@
-package com.example.jobapp.Activities;
+package com.example.jobapp.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
-import com.example.jobapp.Models.Ad;
+
 import com.example.jobapp.R;
+import com.example.jobapp.model.Ad;
 
 public class AdDetailsActivity extends AppCompatActivity {
 
@@ -28,7 +29,6 @@ public class AdDetailsActivity extends AppCompatActivity {
         TextView qualifications = findViewById(R.id.detail_qualification);
         TextView aboutHeader = findViewById(R.id.detail_about_header);
         TextView about = findViewById(R.id.detail_about);
-        //TextView date = findViewById(R.id.detail_date);
 
 
         name.setText(ad.getUsername());
@@ -40,6 +40,5 @@ public class AdDetailsActivity extends AppCompatActivity {
         aboutHeader.setText(aboutHeaderString);
         about.setText(ad.getAbout());
         qualifications.setText(ad.getQualification());
-        //date.setText(ad.getDate());
     }
 }

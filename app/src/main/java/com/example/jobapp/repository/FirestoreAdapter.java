@@ -1,10 +1,10 @@
-package com.example.jobapp.Adapters;
-
+package com.example.jobapp.repository;
 
 import android.support.annotation.NonNull;
 import android.util.Log;
-import com.example.jobapp.Models.Contract;
-import com.example.jobapp.Models.Profile;
+
+import com.example.jobapp.model.Contract;
+import com.example.jobapp.model.Profile;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -16,6 +16,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.SetOptions;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,7 +27,6 @@ public class FirestoreAdapter {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     private Profile currentProfile;
-
 
 
     public interface FirestoreListener {

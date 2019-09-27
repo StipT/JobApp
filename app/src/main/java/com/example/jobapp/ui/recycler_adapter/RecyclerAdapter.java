@@ -1,4 +1,4 @@
-package com.example.jobapp.Adapters;
+package com.example.jobapp.ui.recycler_adapter;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -7,8 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import com.example.jobapp.Models.Ad;
+
 import com.example.jobapp.R;
+import com.example.jobapp.model.Ad;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.DocumentSnapshot;

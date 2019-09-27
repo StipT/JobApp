@@ -14,20 +14,20 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Activities.ProfileActivity"
+            android:name=".ui.ProfileActivity"
             android:label="@string/title_activity_profile"
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
 
         <activity
-            android:name=".Activities.EditAdsActivity"
+            android:name=".ui.EditAdsActivity"
             android:label="@string/title_activity_profile"
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
         <activity
-            android:name=".Activities.DrawerActivity"
+            android:name=".ui.AdListActivity"
             android:label="@string/title_activity_drawer"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -39,17 +39,17 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Activities.AddAdActivity"
+            android:name=".ui.AddAdActivity"
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
         <activity
-            android:name=".Activities.AdDetailsActivity"
+            android:name=".ui.AdDetailsActivity"
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
         <activity
-            android:name=".Activities.LoginActivity"
+            android:name=".ui.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -58,7 +58,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Activities.SignUpActivity"
+            android:name=".ui.SignUpActivity"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

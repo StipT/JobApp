@@ -7,7 +7,7 @@
     <ImageView
         android:id="@+id/login_logo"
         android:layout_width="match_parent"
-        android:layout_height="310dp"
+        android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:scaleType="fitCenter"
         app:srcCompat="@drawable/job_app" />
@@ -16,7 +16,8 @@
         android:id="@+id/login_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:ems="10"
         android:hint="@string/login_email"
         android:inputType="textEmailAddress" />
@@ -29,6 +30,22 @@
         android:ems="10"
         android:hint="@string/login_password"
         android:inputType="textPassword" />
+
+    <CheckBox
+        android:id="@+id/remember_checkbox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/remember_login_checkbox" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:visibility="invisible" />
 
     <Button
         android:id="@+id/login_button"

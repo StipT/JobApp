@@ -1,4 +1,4 @@
-package com.example.jobapp.Activities;
+package com.example.jobapp.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,10 +7,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import com.example.jobapp.Models.Ad;
-import com.example.jobapp.Adapters.FirestoreAdapter;
 
 import com.example.jobapp.R;
+import com.example.jobapp.model.Ad;
+import com.example.jobapp.repository.FirestoreAdapter;
 
 public class AddAdActivity extends AppCompatActivity{
     final FirestoreAdapter firestoreAdapter = new FirestoreAdapter();
@@ -51,7 +51,7 @@ public class AddAdActivity extends AppCompatActivity{
                 @Override
                 public void onClick(View v) {
                     firestoreAdapter.deleteAd(id);
-                    Intent intent = new Intent(AddAdActivity.this, EditAdsActivity.class);
+                    Intent intent = new Intent(AddAdActivity.this, AdListActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     Toast.makeText(AddAdActivity.this, "Ad has been successfully deleted", Toast.LENGTH_LONG).show();
                     startActivity(intent);
@@ -66,7 +66,7 @@ public class AddAdActivity extends AppCompatActivity{
                             , editQualification.getText().toString()
                             , editDescription.getText().toString()
                             , firestoreAdapter.userUID(), id);
-                    Intent intent = new Intent(AddAdActivity.this, EditAdsActivity.class);
+                    Intent intent = new Intent(AddAdActivity.this, AdListActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     Toast.makeText(AddAdActivity.this, "Ad has been successfully updated", Toast.LENGTH_LONG).show();
                     startActivity(intent);
@@ -82,7 +82,7 @@ public class AddAdActivity extends AppCompatActivity{
                             , editQualification.getText().toString()
                             , editDescription.getText().toString()
                             , firestoreAdapter.userUID(), null);
-                    Intent intent = new Intent(AddAdActivity.this, DrawerActivity.class);
+                    Intent intent = new Intent(AddAdActivity.this, AdListActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     Toast.makeText(AddAdActivity.this, "Ad has been successfully added", Toast.LENGTH_LONG).show();
                     startActivity(intent);

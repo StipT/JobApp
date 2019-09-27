@@ -1,4 +1,4 @@
-package com.example.jobapp.Models;
+package com.example.jobapp.model;
 
 import java.io.Serializable;
 

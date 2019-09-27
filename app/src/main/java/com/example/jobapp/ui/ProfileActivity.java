@@ -1,4 +1,4 @@
-package com.example.jobapp.Activities;
+package com.example.jobapp.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,9 +9,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import com.example.jobapp.Adapters.FirestoreAdapter;
-import com.example.jobapp.Models.Profile;
+
 import com.example.jobapp.R;
+import com.example.jobapp.model.Profile;
+import com.example.jobapp.repository.FirestoreAdapter;
+
 import java.util.InputMismatchException;
 
 public class ProfileActivity extends AppCompatActivity {
@@ -54,7 +56,7 @@ public class ProfileActivity extends AppCompatActivity {
                             , employer_about.getText().toString().trim());
 
                     firestoreAdapter.updateProfile(newProfile);
-                    Intent intent = new Intent(ProfileActivity.this, DrawerActivity.class);
+                    Intent intent = new Intent(ProfileActivity.this, AdListActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     Toast.makeText(ProfileActivity.this, "Your profile has been successfully updated", Toast.LENGTH_LONG).show();
                     startActivity(intent);

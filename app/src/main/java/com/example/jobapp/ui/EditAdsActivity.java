@@ -1,4 +1,4 @@
-package com.example.jobapp.Activities;
+package com.example.jobapp.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,12 +9,13 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import com.example.jobapp.Adapters.FirestoreAdapter;
-import com.example.jobapp.Adapters.RecyclerAdapter;
-import com.example.jobapp.Models.Ad;
-import com.example.jobapp.Models.Contract;
-import com.example.jobapp.Models.Profile;
+
 import com.example.jobapp.R;
+import com.example.jobapp.model.Ad;
+import com.example.jobapp.model.Contract;
+import com.example.jobapp.model.Profile;
+import com.example.jobapp.repository.FirestoreAdapter;
+import com.example.jobapp.ui.recycler_adapter.RecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -87,7 +88,7 @@ public class EditAdsActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(EditAdsActivity.this, DrawerActivity.class);
+        Intent intent = new Intent(EditAdsActivity.this, AdListActivity.class);
         startActivity(intent);
     }
 }

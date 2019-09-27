@@ -1,10 +1,9 @@
-package com.example.jobapp.Models;
+package com.example.jobapp.model;
 
 import java.io.Serializable;
 
 
 public class Ad implements Serializable {
-    public static final long serialVesrionUID = 1L;
     private String username;
     private String contactEmail;
     private String position;
@@ -13,7 +12,6 @@ public class Ad implements Serializable {
     private String qualification;
     private String about;
 
-    //TODO  Timestamp/Date implementation
 
     public Ad(){
     }
